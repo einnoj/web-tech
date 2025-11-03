@@ -3,16 +3,22 @@ const form = document.getElementById("user-form");
 const modal = new bootstrap.Modal(document.getElementById("resultModal"));
 const modalBody = document.getElementById("modalBody");
 
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const statusSelect = document.getElementById("status");
+const commentsArea = document.getElementById("comments");
+
+
 form.addEventListener("submit", (e) => {
   // Prevents the page from reloading once user clicks submit
   e.preventDefault();
 
   // Collect form values, the default will be an empty string
-  const name = document.getElementById("name").value.trim() || "";
-  const email = document.getElementById("email").value.trim() || "";
-  const status = document.getElementById("status").value || "";
-  const comments = document.getElementById("comments").value.trim() || "";
-
+  const name = nameInput.value.trim() || "";
+  const email = emailInput.value.trim() || "";
+  const status = statusSelect.value || "";
+  const comments = commentsArea.value.trim() || "";
+  
   // check which courses were checked
   let courses = "";
   const checkboxes = document.querySelectorAll(".form-check-input");

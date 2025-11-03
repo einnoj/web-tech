@@ -19,8 +19,20 @@ function randomColor() {
 // Starts the background color changing
 function start() {
   const seconds = Number(input.value);
-  if (seconds <= 0) return;
 
+  const error = document.getElementById('error') || document.createElement('p');
+  error.id = 'error';
+  error.style.color = 'red';
+
+  if (seconds <= 0 || isNaN(seconds)){
+    error.textContent = "Please enter a valid positive number for the interval.";
+    input.after(error);
+    return;
+  } 
+
+  // removes any previous error message
+  error.textContent = "";
+  
   input.disabled = true;
   button.value = "Stop"; 
   button.className = "btn btn-danger";

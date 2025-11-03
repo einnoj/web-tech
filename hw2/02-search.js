@@ -32,13 +32,13 @@ function highlightText(text, term) {
 function handleSearch() {
     const query = userInput.value.trim();
     // q will be used for case sensitive search
-    const q = query.toLowerCase();
+    const queryLowerCase = query.toLowerCase();
 
     // clears previous search results
     resultsDiv.innerHTML = "";
 
     // if the user presses enter key or clicks search button while the input field is empty, show this message
-    if (!q) {
+    if (!queryLowerCase) {
         resultsDiv.innerHTML = '<p class="text-danger text-center m-0">Please enter a search term.</p>';
         clearResults();
         return;
@@ -55,7 +55,7 @@ function handleSearch() {
             // check if character.name exists to avoid errors
             if(!character.name) return false;
             // return true if the character name matches the input
-            return character.name.toLowerCase().includes(q);
+            return character.name.toLowerCase().includes(queryLowerCase);
         }); 
 
     }

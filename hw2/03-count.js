@@ -12,8 +12,10 @@ input.addEventListener("keydown", function (event) {
     const text = textDiv.textContent;
 
     // Highlight all matches of the word (case-insensitive)
+    const regex = new RegExp(`\\b${word}\\b`, "gi");
+    // Highlight all matches of the word (case-insensitive)
     const result = text.replace(
-      new RegExp(word, "gi"),
+      regex,
       `<span style="background-color: yellow;">$&</span>`
     );
 
