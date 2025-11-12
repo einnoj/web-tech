@@ -64,7 +64,7 @@ const Population = () => {
         data: countryData.map(function (c) {
           return c.population;
         }),
-        backgroundColor: '#2F6FB3',
+        backgroundColor: 'blue',
         borderColor: '#1E88E5',
         borderWidth: 2,
       },
@@ -74,35 +74,37 @@ const Population = () => {
   const options = {
     responsive: true,
     plugins: {
-      title: { display: true, text: 'Population per Country in South America' },
+      title: { display: true, text: 'Population per Country in South America', color: 'white', font: {size:24, weight:'bold'} },
       legend: { display: false },
       tooltip: { enabled: true },
     },
     scales: {
       x: {
-        title: { display: true, text: 'Countries' },
-        ticks: { autoSkip: true, maxRotation: 0 },
+        title: { display: true, text: 'Countries', color: 'white', font: {size:24, weight:'bold'}  },
+        ticks: { autoSkip: false, maxRotation: 0, color:'white', font: {size:16} },
       },
       // could not figure out how to make the tick steps even
       // skips from 150M to 225M
       // wanted to change Y_MAX to 225M to make it easier to see
       y: {
         beginAtZero: true,
-        //max: 225000000,
-        title: { display: true, text: 'Population' },
+        ticks: {autoSkip: true, color:'white', font: {size:18}},
+        title: { display: true, text: 'Population', color: 'white', font: {size:24, weight:'bold'} },
+        grid: { color: 'white'}
       },
     },
   };
 
   //Used the template in the module 6 stackblitz example
   return (
-    <div>
+    <div className='bg-dark text-light text-center'>
       {loading ? (
         <p>Loading data...</p>
       ) : (
         <>
           <h1>Population Data</h1>
           <br />
+          
           <Bar data={data} options={options} />
         </>
       )}

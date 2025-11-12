@@ -62,33 +62,36 @@ export default function List() {
   //Used the template in the module 6 stackblitz example
   // changed most lines to work on the countries API
   return (
-    <div>
-      {loading ? (
-        <p>Loading data...</p>
-      ) : (
-        <>
-          <h1>South American Countries</h1>
-          <ul>
-            {countryData.map((country) => (
-              <li key={country.name}>
-                <strong>{country.name}</strong>
-                <br />
-                Population: {country.population.toLocaleString()}
-                <br />
-                Languages: {country.languages}
-                <br />
-                {country.flag && (
-                  <img
-                    src={country.flag}
-                    alt={country.name + ' flag'}
-                    width={200}
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+    <div className='bg-dark text-light'>
+      <div className='container py-3'>
+        {loading ? (
+          <p>Loading data...</p>
+        ) : (
+          <>
+            <h1 className='text-center fw-bold display-4'>South American Countries</h1>
+            <ul className='list-unstyled'>
+              {countryData.map((country) => (
+                <li key={country.name} className='py-5 fs-4'>
+                  <strong className='fs-1'>{country.name}</strong>
+                  <br/>
+                  Population: {country.population.toLocaleString()}
+                  <br/>
+                  Languages: {country.languages}
+                  <br />
+                  {country.flag && (
+                    <img
+                      src={country.flag}
+                      alt={country.name + ' flag'}
+                      width={500}
+                      className='py-3'
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
     </div>
   );
 }

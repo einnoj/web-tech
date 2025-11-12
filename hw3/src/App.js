@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div>
       <NavBar />
-      <main style={{ padding: '1rem' }}>
+      <main style={{ padding: '1px' }}>
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />

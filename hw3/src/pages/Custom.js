@@ -43,7 +43,9 @@ const Custom = () => {
           .sort(function (a, b) {
             return b[1] - a[1];
           })
-          .slice(0, 6); // given by Google AI overview
+          
+          // changed from top 6 to top 5, English was barely represented
+          .slice(0, 5); 
 
         // Store as [{ name, population }]
         var result = entries.map(function (item) {
@@ -53,7 +55,7 @@ const Custom = () => {
         setLangData(result);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setLangData([]); // keep it simple if it fails
+        setLangData([]); 
       } finally {
         setLoading(false);
       }
@@ -62,7 +64,6 @@ const Custom = () => {
     fetchLanguageData();
   }, []);
 
-  // Chart.js data object
   const data = {
     labels: langData.map(function (x) {
       return x.name;
@@ -73,7 +74,7 @@ const Custom = () => {
         data: langData.map(function (x) {
           return x.population;
         }),
-        // simple colors; you can remove these and let Chart.js pick defaults
+        
         backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
         borderWidth: 1,
       },
@@ -84,21 +85,25 @@ const Custom = () => {
   const options = {
     responsive: true,
     plugins: {
-      title: { display: true, text: 'Most Spoken Languages (South America)' },
-      legend: { position: 'bottom' },
+      title: { display: true, text: 'Top 5 Most Spoken Languages in South America', color: 'white', font: {size:24, weight:'bold'} },
+      legend: { position: 'bottom', labels: {color: 'white', font: {size: 18} },},
       tooltip: { enabled: true },
     },
   };
 
   return (
-    <div>
+    <div className='bg-dark text-light d-flex flex-column justify-content-center align-items-center min-vh-100'>
+      <section></section>
       {loading ? (
-        <p>Loading data...</p>
+        <p className='display-1 fw-bold mb-3 mt-0'>Loading data...</p>
       ) : (
         <>
-          <h1>Language Distribution</h1>
+          <h1 className='text-center'>Language Distribution</h1>
           <br />
-          <Pie data={data} options={options} />
+          <div className='pie-chart'>
+            <Pie data={data} options={options} />
+          </div>
+          
         </>
       )}
     </div>
